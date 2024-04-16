@@ -28,6 +28,8 @@
         <allure-junit5.version>2.25.0</allure-junit5.version>
         <allure-maven.version>2.12.0</allure-maven.version>
         <aspectjweaver.version>1.9.21.1</aspectjweaver.version>
+        <lombok.version>1.18.30</lombok.version>
+        <hamcrest.version>2.2</hamcrest.version>
 
         <junit-platform-suite.version>1.10.2</junit-platform-suite.version>
         <cucumber-java.version>7.15.0</cucumber-java.version>
@@ -139,6 +141,22 @@
             <artifactId>aspectjweaver</artifactId>
             <version>${aspectjweaver.version}</version>
             <scope>runtime</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest -->
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest</artifactId>
+            <version>${hamcrest.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-suite -->
