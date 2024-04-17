@@ -48,6 +48,7 @@ public class UI_Cucumber_Hooks {
         }
     }
 
+    @Step("{browser} init")
     public void setupBrowser(String browser) {
         driver = null;
         switch (browser.toLowerCase()) {
