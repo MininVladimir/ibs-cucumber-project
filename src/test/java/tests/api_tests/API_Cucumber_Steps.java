@@ -9,12 +9,16 @@ public class API_Cucumber_Steps {
 
     @Then("Get product list")
     public void get_productList() {
-        requests.getFood(4);
+        requests.getFood();
     }
 
     @Then("Add product with parameters: {string}, {string}, {string}")
-    public void add_product(String value1, String value2, String value3) {
-        requests.postFood(value1, value2, Boolean.valueOf(value3));
+    public void add_product(String name, String type, String exotic) {
+        requests.getFood(requests.postFood(name, type, Boolean.valueOf(exotic)),
+                name,
+                type,
+                Boolean.valueOf(exotic)
+        );
     }
 
     @Then("Clear data")
