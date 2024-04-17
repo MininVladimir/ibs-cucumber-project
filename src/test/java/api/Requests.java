@@ -31,8 +31,8 @@ public class Requests {
 
         Assertions.assertAll(
                 () -> Assertions.assertNotNull(products, "Product list is null"),
-                () -> Assertions.assertFalse(products.stream().allMatch(x -> x.getName() == null), "Field 'name' in product list is null"),
-                () -> Assertions.assertFalse(products.stream().allMatch(x -> x.getType() == null), "Field 'type' in product list is null")
+                () -> Assertions.assertFalse(products.stream().allMatch(x -> x.getName() == null), "The 'Name' values in product list is null"),
+                () -> Assertions.assertFalse(products.stream().allMatch(x -> x.getType() == null), "The 'Type' values in product list is null")
         );
     }
 
@@ -52,8 +52,8 @@ public class Requests {
 
         Assertions.assertAll(
                 () -> Assertions.assertNotNull(products, "Product list is null"),
-                () -> Assertions.assertFalse(products.stream().allMatch(x -> x.getName() == null), "Field 'name' in product list is null"),
-                () -> Assertions.assertFalse(products.stream().allMatch(x -> x.getType() == null), "Field 'type' in product list is null"),
+                () -> Assertions.assertFalse(products.stream().allMatch(x -> x.getName() == null), "The 'Name' values in product list is null"),
+                () -> Assertions.assertFalse(products.stream().allMatch(x -> x.getType() == null), "The 'Type' values in product list is null"),
                 () -> Assertions.assertEquals(products.size(), listSize, "Product has not been added"),
                 () -> Assertions.assertEquals(products.get(listSize - 1).getName(), name, "The 'Name' value of the added product does not match the test data"),
                 () -> Assertions.assertEquals(products.get(listSize - 1).getType(), type, "The 'Type' value of the added product does not match the test data"),
