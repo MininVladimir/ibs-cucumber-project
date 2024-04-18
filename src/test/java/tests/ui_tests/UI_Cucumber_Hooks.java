@@ -55,16 +55,19 @@ public class UI_Cucumber_Hooks {
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
+                firefoxOptions.addArguments("--headless");
                 driver = new FirefoxDriver(firefoxOptions);
                 break;
             case "chrome":
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--headless=new");
                 driver = new ChromeDriver(chromeOptions);
                 break;
             case "edge":
                 WebDriverManager.edgedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--headless=new");
                 driver = new EdgeDriver(edgeOptions);
                 break;
             default:
