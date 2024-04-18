@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <webdrivermanager.version>5.4.0</webdrivermanager.version>
+        <webdrivermanager.version>5.7.0</webdrivermanager.version>
         <selenium-java.version>4.19.1</selenium-java.version>
         <junit-jupiter.version>5.10.2</junit-jupiter.version>
         <junit-jupiter-api.version>5.10.2</junit-jupiter-api.version>
@@ -221,7 +221,7 @@
                     <systemPropertyVariables>
                         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
                         <junit.jupiter.extensions.autodetection.enabled>true</junit.jupiter.extensions.autodetection.enabled>
-                        <browser>chrome</browser>
+                        <browser>local_edge</browser>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>

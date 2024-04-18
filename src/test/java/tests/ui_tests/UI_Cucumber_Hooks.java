@@ -3,6 +3,8 @@ package tests.ui_tests;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.qameta.allure.Step;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import pages.MainPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -14,7 +16,10 @@ import org.openqa.selenium.firefox.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.MalformedURLException;
+import java.net.URI;
 import java.time.Duration;
+import java.util.Map;
 
 import static properties.BrowserProperties.*;
 
@@ -29,7 +34,11 @@ public class UI_Cucumber_Hooks {
     public void openBrowserAndStartApplication() {
         try {
             setupBrowser(browserName);
-            driver.get(URL);
+            if(browserName.toLowerCase().startsWith("local")){
+                driver.get(URLMap.get("local_URL"));
+            } else if(browserName.toLowerCase().startsWith("remote")){
+                driver.get(URLMap.get("remote_URL"));
+            } else System.out.println("Invalid browser name");
             mainPage = new MainPage(driver);
         } catch (Exception e) {
             logger.error("\u001B[31m" + "@Before error: " + e.getMessage() + "\u001B[0m");
@@ -49,26 +58,38 @@ public class UI_Cucumber_Hooks {
     }
 
     @Step("{browser} init")
-    public void setupBrowser(String browser) {
+    public void setupBrowser(String browser) throws MalformedURLException {
         driver = null;
         switch (browser.toLowerCase()) {
-            case "firefox":
+            case "local_firefox":
+                WebDriverManager.firefoxdriver().clearDriverCache().setup();
+                WebDriverManager.firefoxdriver().clearResolutionCache().setup();
                 WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.addArguments("--headless");
                 driver = new FirefoxDriver(firefoxOptions);
                 break;
-            case "chrome":
+            case "local_chrome":
+                WebDriverManager.chromedriver().clearDriverCache().setup();
+                WebDriverManager.chromedriver().clearResolutionCache().setup();
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--headless=new");
                 driver = new ChromeDriver(chromeOptions);
                 break;
-            case "edge":
+            case "local_edge":
+                WebDriverManager.edgedriver().clearDriverCache().setup();
+                WebDriverManager.edgedriver().clearResolutionCache().setup();
                 WebDriverManager.edgedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.addArguments("--headless=new");
                 driver = new EdgeDriver(edgeOptions);
+                break;
+            case "remote_firefox":
+                initRemoteDriver(remoteDriverMap.get("firefox"), remoteDriverMap.get("version 109"));
+                break;
+            case "remote_chrome":
+                initRemoteDriver(remoteDriverMap.get("chrome"), remoteDriverMap.get("version 109"));
                 break;
             default:
                 System.out.println("Invalid browser name");
@@ -83,5 +104,13 @@ public class UI_Cucumber_Hooks {
         driver.manage().deleteAllCookies();
         driver.quit();
         driver = null;
+    }
+
+    public void initRemoteDriver(String browserName, String browserVersion) throws MalformedURLException {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("browserName", browserName);
+        capabilities.setCapability("browserVersion", browserVersion);
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of("enableVNC", true));
+        driver = new RemoteWebDriver(URI.create(URLMap.get("remote_driver_URL")).toURL(), capabilities);
     }
 }
