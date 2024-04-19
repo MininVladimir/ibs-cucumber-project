@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class APIProperties {
 
-    public static final String URI = "http://localhost:8080";
+    public static final String URI = System.getProperty("URI");
     public static final Map<String, String> endpointMap;
     public static final Map<String, Integer> statusCodeMap;
     public static final Map<String, String> jsonPathMap;

@@ -222,6 +222,8 @@
                         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
                         <junit.jupiter.extensions.autodetection.enabled>true</junit.jupiter.extensions.autodetection.enabled>
                         <browser>local_chrome</browser>
+                        <db>jdbc:h2:tcp://localhost:9092/mem:testdb</db>
+                        <URI>http://localhost:8080</URI>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
