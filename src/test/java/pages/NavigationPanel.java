@@ -2,11 +2,9 @@ package pages;
 
 import io.qameta.allure.Step;
 import methods.Methods;
-import org.junit.jupiter.api.Tag;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-@Tag("@all")
 public class NavigationPanel extends Methods {
     public NavigationPanel(WebDriver driver) {
         super(driver);

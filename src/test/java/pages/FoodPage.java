@@ -1,13 +1,10 @@
 package pages;
 
-import io.cucumber.java.en.And;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Tag;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-@Tag("@all")
 public class FoodPage extends MainPage {
     public FoodPage(WebDriver driver) {
         super(driver);
