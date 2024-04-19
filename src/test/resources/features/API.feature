@@ -1,5 +1,4 @@
 @api
-#@ignore
 
 Feature: API tests
 

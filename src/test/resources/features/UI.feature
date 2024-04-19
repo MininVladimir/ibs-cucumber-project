@@ -1,5 +1,4 @@
 @ui
-#@ignore
 
 Feature: UI tests
 

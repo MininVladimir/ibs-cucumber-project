@@ -1,5 +1,4 @@
 @db
-#@ignore
 
 Feature: DB tests
 
