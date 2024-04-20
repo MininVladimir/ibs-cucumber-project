@@ -25,16 +25,15 @@ public class Methods{
         return element;
     }
 
-    @Step("Wait until wait until the element becomes visible")
-    public WebElement waitElementToBeVisible(By locator){
+    @Step("Wait until the element becomes visible")
+    public void waitElementToBeVisible(By locator){
         new WebDriverWait(driver, Duration.ofSeconds(implicitlyWait))
                                   .until(ExpectedConditions
                                   .visibilityOf(findElement(locator))
         );
-        return findElement(locator);
     }
 
-    @Step("Wait until wait until the element becomes clickable")
+    @Step("Wait until the element becomes clickable")
     public WebElement waitElementToBeClickable(By locator){
         new WebDriverWait(driver, Duration.ofSeconds(implicitlyWait))
                                   .until(ExpectedConditions
@@ -71,7 +70,7 @@ public class Methods{
         findElement(locator).sendKeys(value);
     }
 
-    public void sendKeysForSpecialField(By locator,
+    public void sendKeysForInputTypeDate(By locator,
                                         String value){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].setAttribute(arguments[1],arguments[2])",
