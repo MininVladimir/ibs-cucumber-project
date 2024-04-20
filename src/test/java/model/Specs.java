@@ -13,7 +13,6 @@ public class Specs {
         return new RequestSpecBuilder()
                 .setBaseUri(baseUri)
                 .setContentType(ContentType.JSON)
-                .log(LogDetail.ALL)
                 .build();
     }
 
